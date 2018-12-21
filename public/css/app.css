@@ -1,0 +1,15 @@
+[v-cloak] .v-cloak--block {
+  display: block;
+  background: url("/images/cat-preloader.gif") center center no-repeat, #e19a2e;
+  width: 100%;
+  height: 1200px;
+}
+
+[v-cloak] .v-cloak--hidden {
+  display: none;
+}
+
+.v-cloak--block {
+  display: none;
+}
+

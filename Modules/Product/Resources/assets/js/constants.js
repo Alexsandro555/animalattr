@@ -1,0 +1,15 @@
+export const ACTIONS = {
+  UPDATE_FIELD: "UPDATE_FIELD",
+  ATTRIBUTES: "ATTRIBUTES",
+  SAVE_ATTRIBUTES: "SAVE_ATTRIBUTES",
+  UPDATE_RELATIONS: "UPDATE_RELATIONS"
+}
+
+export const PRIVATE = {
+
+}
+export const MUTATIONS = {
+}
+
+export const GETTERS = {
+}

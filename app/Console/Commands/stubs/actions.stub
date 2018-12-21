@@ -1,0 +1,7 @@
+import { ACTIONS, PRIVATE, GLOBAL } from "@/constants";
+import { api } from "../api/$NAME$";
+
+export default {
+    [ACTIONS.SAVE]: ({commit, store},data) => {
+    }
+}
