@@ -1,8 +1,8 @@
 <template>
-    <v-container fluid grid-list-md>
+    <v-container>
         <v-layout wrap row>
             <v-progress-circular v-if="loader" indeterminate :size="100" color="primary"></v-progress-circular>
-            <v-flex v-if="!loader" xs8>
+            <v-flex v-if="!loader">
                 <v-card>
                     <v-card-title>
                         <h1>Редактирование $NAME$</h1>
@@ -10,7 +10,7 @@
                     <v-card-text>
                         <v-container>
                             <v-layout row wrap>
-                                <v-flex xs8>
+                                <v-flex>
                                     <v-form ref="form" lazy-validation v-model="valid">
                                         <template v-for="(field, num) in fields">
                                             <form-builder :field="field" v-if="num!=='description'" :num="num" :items="item" @update="updateField"></form-builder>
@@ -26,7 +26,9 @@
                                             v-model="item.description">
                                         </wysiwyg>
                                         <file-box url="/files/upload" :fileable-id="Number(item.id)" :type-files="typeFiles" :model="model"></file-box>
-                                        <v-btn large :class="{primary: valid, 'red lighten-3': !valid}" :disabled="isSending" @click.prevent="onSubmit">Сохранить</v-btn>
+                                        <v-flex text-xs-left>
+                                            <v-btn large :class="{primary: valid, 'red lighten-3': !valid}" :disabled="isSending" @click.prevent="onSubmit">Сохранить</v-btn>
+                                        </v-flex>
                                     </v-form>
                                 </v-flex>
                             </v-layout>
@@ -40,8 +42,9 @@
 <script>
     import { mapActions, mapState, mapMutations } from 'vuex'
     import { ACTIONS, GLOBAL } from '@/constants'
-    import formBuilder from '@/components/form/builder/FormBuilder'
-    import fileBox from '@file/components/file-box/FileBox'
+    import formBuilder from '@/vue/FormBuilder'
+    import Wysiwyg from '@/vue/Wysiwyg.vue'
+    //import fileBox from '@file/components/file-box/FileBox'
     export default {
         props: {
             id: {
@@ -79,7 +82,7 @@
         },
         components: {
             formBuilder,
-            fileBox
+            //fileBox
         },
         methods: {
             ...mapActions('$NAME$',{

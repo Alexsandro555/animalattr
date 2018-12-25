@@ -4,6 +4,7 @@ namespace Modules\Product\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Database\Eloquent\Factory;
+use Modules\Product\Entities\Attribute;
 use Modules\Product\Entities\Product;
 
 class ProductServiceProvider extends ServiceProvider
@@ -39,6 +40,9 @@ class ProductServiceProvider extends ServiceProvider
         $this->app->register(RouteServiceProvider::class);
         $this->app->bind('Product', function ($app) {
           return new Product();
+        });
+        $this->app->bind('Attribute', function ($app) {
+          return new Attribute();
         });
     }
 

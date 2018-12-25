@@ -68,12 +68,13 @@ class AttributeController extends Controller
   }
 
   /**
-   * Display a listing of the resource.
-   * @return Response
+   * Get all attributes
+   *
+   * @return \Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection|Attribute[]
    */
   public function index()
   {
-    return view('product::index');
+    return Attribute::with(['unit', 'type', 'attributeGroup'])->get();
   }
 
   /**
@@ -92,6 +93,9 @@ class AttributeController extends Controller
    */
   public function store(Request $request)
   {
+    dd($request);
+    $attribute = Attribute::findOrFail($request->id);
+    return $attribute;
   }
 
   /**

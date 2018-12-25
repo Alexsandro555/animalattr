@@ -84,7 +84,9 @@ class VuexStateCommand extends GeneratorCommand
   protected function getTemplateContents()
   {
     return (new ReStub($this->getStubName(), [
-      'NAME'    => $this->argument('name')
+      'NAME'    => $this->argument('name'),
+      'NAME_URL' => strtolower($this->argument('name')),
+      'MODULE_NAME' => $this->getModuleName()
     ]))->render();
   }
 

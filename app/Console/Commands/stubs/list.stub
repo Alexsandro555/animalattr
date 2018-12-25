@@ -7,18 +7,14 @@
                     <v-card-title>
                         <h1>$NAME$</h1>
                         <v-spacer></v-spacer>
-                        <v-text-field
-                                v-model="search"
-                                append-icon="search"
-                                label="Поиск"
-                                single-line
-                                hide-details
-                        ></v-text-field>
+                        <v-text-field v-model="search" append-icon="search" label="Поиск" single-line hide-details></v-text-field>
                     </v-card-title>
                     <v-card-text>
                         <v-data-table :headers="headers"
                                       :items="items"
                                       :search="search"
+                                      :rows-per-page-items="[10, 20, 50, { 'text': '$vuetify.dataIterator.rowsPerPageAll', 'value': -1 } ]"
+                                      rows-per-page-text="Строк на странице:"
                                       class="elevation-1">
                             <template slot="items" slot-scope="props">
                                 <td>{{ props.item.id }}</td>
@@ -40,6 +36,9 @@
                                     Извините, нет данных для отображения :(
                                 </v-alert>
                             </template>
+                             <v-alert slot="no-results" :value="true" color="error" icon="warning">
+                              По ключевой фразе "{{ search }}" ничего не найдено.
+                            </v-alert>
                         </v-data-table>
                     </v-card-text>
                     <v-card-actions>
@@ -102,7 +101,7 @@
             add$NAME$() {
                 this.add()
                     .then(response => {
-                        this.$router.push({name: 'Edit$NAME$', params: { id: response.id.toString()}})
+                        this.$router.push({name: 'Edit-$NAME$', params: { id: response.id.toString()}})
                     })
                     .catch(error => {})
             },
