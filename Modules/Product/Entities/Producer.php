@@ -12,15 +12,8 @@ class Producer extends Model
 
   use RelationTrait;
 
-  protected $fillable = [
-    'id',
-    'title',
-    'sort'
-  ];
+  protected $guarded = [];
 
   protected $dates = ['deleted_at'];
 
-  public function line_products() {
-    return $this->belongsToMany(LineProduct::class);
-  }
 }

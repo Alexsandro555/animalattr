@@ -11,7 +11,7 @@ trait TableColumnsTrait
   {
     $resultCollection = collect([]);
     $model = new static;
-    $tableName = $model->table ? $model->table . 's' : $name.'s';
+    $tableName = $model->table ? $model->table : $name.'s';
     $columns = Schema::getColumnListing($tableName);
     if ($columns) {
       $primaryKey = \DB::select(\DB::raw("SELECT k.column_name FROM information_schema.table_constraints t JOIN information_schema.key_column_usage k USING(constraint_name, table_schema, table_name) WHERE t.constraint_type='PRIMARY KEY' AND t.table_schema=schema() AND t.table_name='" . $tableName . "'"))[0]->column_name;

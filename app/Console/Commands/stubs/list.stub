@@ -23,7 +23,7 @@
                                     <v-btn @click="goToPage(props.item)" icon class="mx-0">
                                         <v-icon>find_in_page</v-icon>
                                     </v-btn>
-                                    <v-btn icon class="mx-0" @click="$router.push('/$NAME$/Edit/'+props.item.id)">
+                                    <v-btn icon class="mx-0" @click="$router.push('/$NAME_LOWER$/edit/'+props.item.id)">
                                         <v-icon color="teal">edit</v-icon>
                                     </v-btn>
                                     <v-btn :disabled="props.item.url_key === 'po-umolchaniyu'" icon class="mx-0" @click="deleteItem(props.item)">
@@ -42,7 +42,7 @@
                         </v-data-table>
                     </v-card-text>
                     <v-card-actions>
-                        <v-btn @click="addArticle" color="primary" dark class="text-left mb-2">
+                        <v-btn @click="add$NAME$" color="primary" dark class="text-left mb-2">
                             <v-icon>add</v-icon>
                         </v-btn>
                     </v-card-actions>
@@ -84,6 +84,7 @@
         beforeRouteEnter(to, from, next) {
             next(vm => {
                     vm.load().then(response => {
+                    vm.initialization()
                     vm.loader = false
                 })
             })
@@ -101,12 +102,12 @@
             add$NAME$() {
                 this.add()
                     .then(response => {
-                        this.$router.push({name: 'Edit-$NAME$', params: { id: response.id.toString()}})
+                        this.$router.push({name: 'edit-$NAME_LOWER$', params: { id: response.id.toString()}})
                     })
                     .catch(error => {})
             },
             goToPage(item) {
-                let url = '/$NAME$/detail/'
+                let url = '/$NAME_LOWER$/detail/'
                 url = url + item.url_key
                 window.open(url, '_blank')
             },
@@ -115,7 +116,7 @@
                     this.delete(item.id)
                 }
             },
-            ...mapActions('$NAME$',{load: GLOBAL.LOAD, add: GLOBAL.ADD, delete: GLOBAL.DELETE})
+            ...mapActions('$NAME$',{load: GLOBAL.LOAD, add: GLOBAL.ADD, delete: GLOBAL.DELETE, initialization: GLOBAL.INITIALIZATION})
         }
      }
 </script>

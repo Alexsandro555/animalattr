@@ -38,7 +38,19 @@
     props: { },
     data() {
       return {
-        drawer: null
+        drawer: null,
+        items: [
+          { divider: true },
+          { heading: 'Действия' },
+          {
+            text: 'Продукция',
+            path: '/'
+          },
+          {
+            text: 'Категории',
+            path: '/Categories'
+          }
+        ]
       }
     },
     methods: {

@@ -84,7 +84,8 @@ class VueListCommand extends GeneratorCommand
   protected function getTemplateContents()
   {
     return (new ReStub($this->getStubName(), [
-      'NAME'    => $this->argument('name')
+      'NAME'    => $this->argument('name'),
+      'NAME_LOWER' => strtolower($this->argument('name'))
     ]))->render();
   }
 

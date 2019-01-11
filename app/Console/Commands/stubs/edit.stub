@@ -86,7 +86,6 @@
         },
         methods: {
             ...mapActions('$NAME$',{
-                initialization: GLOBAL.INITIALIZATION,
                 save: ACTIONS.SAVE_DATA,
                 updateField: ACTIONS.UPDATE_FIELD,
                 getAttributes: ACTIONS.ATTRIBUTES,
@@ -98,7 +97,6 @@
                 if(this.items.length == 0) {
                     this.$router.push({name: 'products'})
                 }
-                this.initialization(Number(id))
             },
             onSubmit() {
                 if(this.$refs.form.validate()) {

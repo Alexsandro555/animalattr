@@ -26,7 +26,9 @@ export default {
             commit('RESET_ERROR')
         }
     },
-    getters: {},
+    getters: {
+
+    },
     mutations: {
         SET_ERRORS: (state, payload) => {
             state.messages = Object.assign({}, payload)

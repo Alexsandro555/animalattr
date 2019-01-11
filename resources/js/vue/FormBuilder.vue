@@ -53,14 +53,14 @@
     ></v-checkbox>
     <v-select
       v-else-if="field.type=='selectbox'"
-      :name="num"
+      :name="num+'_id'"
       :items="field.items"
       :label="field.label"
       item-text="title"
       item-value="id"
       :rules="getRules(field.validations)"
       :required="getRequired(field.validations)"
-      :error-messages="messages[''+num+'']"
+      :error-messages="messages[''+num+'_id']"
       :value="items[num+'_id']"
       @change="updateItem($event,num)"
       single-line
@@ -68,7 +68,7 @@
   </div>
 </template>
 <script>
-  import {ValidationConvert} from './validations'
+  import {ValidationConvert} from './Validations'
   import {mapState} from 'vuex'
 
   export default {

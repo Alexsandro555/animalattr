@@ -70,12 +70,8 @@ class Attribute extends Model
     return $this->belongsTo(AttributeGroup::class);
   }
 
-  public function typeProducts() {
-    return $this->morphedByMany(TypeProduct::class, 'attributable');
-  }
-
-  public function lineProducts() {
-    return $this->morphedByMany(LineProduct::class, 'attributable');
+  public function categories() {
+    return $this->belongsToMany(Category::class, 'attribute_category');
   }
 
   public function listValue() {

@@ -82,25 +82,18 @@ class Product extends Model
     'active' => [
       'enabled' => true
     ],
-    'type_product' => [
+    'category' => [
       'enabled' => true,
       'validations' => [
         'required' => true,
       ]
-    ],
-    'line_product' => [
-      'enabled' => true
     ]
   ];
 
   protected $guarded = [];
 
-  public function type_product() {
-    return $this->belongsTo(TypeProduct::class);
-  }
-
-  public function line_product() {
-    return $this->belongsTo(LineProduct::class);
+  public function category() {
+    return $this->belongsTo(Category::class);
   }
 
   public function attribute_boolean() {

@@ -85,7 +85,7 @@ class ApiCommand extends GeneratorCommand
   protected function getTemplateContents()
   {
     return (new ReStub($this->getStubName(), [
-      'NAME'    => $this->argument('name')
+      'NAME'    => strtolower($this->argument('name'))
     ]))->render();
   }
 

@@ -10,10 +10,9 @@ export const api = {
       })
     })
   },
-  patch(data) {
-    return new Promise((resolve, reject) => {
-      console.log(this.url)
-      axios.patch(this.url, data).then(response => response.data).then(response => {
+  patch({data, url}) {
+    return new Promise((resolve, reject, state) => {
+      axios.patch(url, data).then(response => response.data).then(response => {
         resolve(response)
       }).catch(error => {
         reject(error)

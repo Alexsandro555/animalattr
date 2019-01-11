@@ -8,7 +8,7 @@ export default {
     commit(PRIVATE.UPDATE_RELATIONS,obj)
   },
   [ACTIONS.UPDATE_FIELD]: ({ commit }, objField) => {
-    commit('SET_ITEM',objField)
+    //commit('SET_ITEM',objField)
     commit(PRIVATE.UPDATE_RELATIONS, objField)
   },
   [ACTIONS.ATTRIBUTES]: ({ commit }, id) => {

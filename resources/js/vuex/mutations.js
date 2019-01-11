@@ -21,14 +21,14 @@ export default {
     _.set(state, variable, value)
   },
   SELECT_VARIABLE_BY_ID: (state, {source, receiver, id}) => {
-    const array = _.get(state, source).find(item => item.id === id)
-    _.set(state, receiver, array)
+    const variable = _.get(state, source).find(item => item.id === id)
+    _.set(state, receiver, variable)
   },
   GET_ARRAY_OBJECT_BY_ID: (state, {variable, id}) => {
     return _.get(state, variable).filter(item => item.id === id)
   },
   SET_VARIABLE: (state,{module,variable,value}) => {
-    _.set(state[module],variable,value)
+    _.set(state,variable,value)
   },
   INC_VARIABLE: (state,{module,variable}) => {
     _.set(state[module],variable,_.get(state[module],variable)+1)

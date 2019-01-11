@@ -41,12 +41,12 @@ export default {
         commit(PRIVATE.DELETE, response)
       })
   },
-  [GLOBAL.SAVE_DATA]: ({ commit, dispatch }, data) => {
+  [GLOBAL.SAVE_DATA]: ({ commit, dispatch, state }, data) => {
     return new Promise((resolve, reject) => {
-      api.patch(data)
+      api.patch({data, url: state.url})
         .then(response => {
           dispatch('successSaveNotification', response.message, {root: true})
-          commit(GLOBAL.UPDATE, response.model)
+          commit(GLOBAL.UPDATE, response)
           resolve()
         }).catch(error => {
         reject(error)

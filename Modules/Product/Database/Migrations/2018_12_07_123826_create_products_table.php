@@ -28,15 +28,13 @@ class CreateProductsTable extends Migration
       $table->boolean('onsale')->nullable()->comment('Скидка');
       $table->boolean('special')->nullable()->comment('Спецпредложение');
       $table->boolean('need_order')->nullable()->comment('Необходимо заказывать');
-      $table->unsignedInteger('type_product_id')->nullable()->comment('Тип продукта');
+      $table->unsignedInteger('category_id')->comment('Категория');
       $table->string('vendor')->nullable()->comment('Артикул');
       $table->string('IEC')->nullable()->comment('IEC');
-      $table->unsignedInteger('line_product_id')->nullable()->comment('Линейка продукции');
       $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
       $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
       $table->softDeletes();
-      $table->foreign('type_product_id')->references('id')->on('type_products')->onDelete('cascade');
-      $table->foreign('line_product_id')->references('id')->on('line_products')->onDelete('cascade');
+      $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
     });
 
     DB::statement("ALTER TABLE `$this->tableName` comment 'Продукция'");
@@ -50,8 +48,7 @@ class CreateProductsTable extends Migration
   public function down()
   {
     Schema::table($this->tableName, function (Blueprint $table) {
-      $table->dropForeign('products_line_product_id_foreign');
-      $table->dropForeign('products_type_product_id_foreign');
+      $table->dropForeign('products_category_id_foreign');
     });
     Schema::dropIfExists($this->tableName);
   }

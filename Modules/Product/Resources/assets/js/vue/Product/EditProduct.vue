@@ -54,7 +54,7 @@
     </v-container>
 </template>
 <script>
-    import { mapActions, mapState, mapMutations } from 'vuex'
+    import { mapActions, mapState, mapMutations, mapGetters } from 'vuex'
     import { ACTIONS, GLOBAL } from '@/constants'
     import formBuilder from '@/vue/FormBuilder'
     import Wysiwyg from '@/vue/Wysiwyg.vue'
@@ -87,7 +87,8 @@
             next()
         },
         computed: {
-            ...mapState('Product', ['item', 'items', 'fields', 'model', 'attributes'])
+          ...mapState('Product', ['item', 'items', 'fields', 'model', 'attributes']),
+          ...mapGetters('Product', {getItem: GLOBAL.GET_ITEM})
         },
         watch: {
             'fields' (to, from) {
@@ -104,19 +105,19 @@
         },
         methods: {
             ...mapActions('Product',{
-                initialization: GLOBAL.INITIALIZATION,
-                save: ACTIONS.SAVE_DATA,
+                save: GLOBAL.SAVE_DATA,
                 updateField: ACTIONS.UPDATE_FIELD,
                 getAttributes: ACTIONS.ATTRIBUTES,
                 updateRelations: ACTIONS.UPDATE_RELATIONS
             }),
             ...mapMutations('initializer', {resetError: 'RESET_ERROR'}),
+            ...mapMutations('Product', {selectItem: 'SELECT_VARIABLE_BY_ID'}),
             init(id) {
                 this.resetError();
                 if(this.items.length == 0) {
                     this.$router.push({name: 'list-product'})
                 }
-                this.initialization(Number(id))
+                this.selectItem({source: 'items', receiver: 'item', id: Number(this.id)})
             },
             onSubmit() {
                 if(this.$refs.form.validate()) {

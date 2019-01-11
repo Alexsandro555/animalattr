@@ -85,15 +85,10 @@
     beforeRouteEnter(to, from, next) {
       next(vm => {
         vm.load().then(response => {
+          vm.initialization()
           vm.loader = false
         })
       })
-    },
-    beforeRouteUpdate(to, from, next) {
-      this.load().then(response => {
-        this.loader = false
-      })
-      next()
     },
     computed: {
       ...mapState('Product', ['items']),
@@ -117,7 +112,7 @@
           this.delete(item.id)
         }
       },
-      ...mapActions('Product', {load: GLOBAL.LOAD, add: GLOBAL.ADD, delete: GLOBAL.DELETE})
+      ...mapActions('Product', {load: GLOBAL.LOAD, add: GLOBAL.ADD, delete: GLOBAL.DELETE, initialization: GLOBAL.INITIALIZATION})
     }
   }
 </script>

@@ -13,6 +13,7 @@
 
 Route::prefix('product')->group(function() {
   Route::get('/', 'ProductController@index');
+  Route::patch('/', 'ProductController@save');
 
 
   //===========================Attribute================================================
@@ -32,3 +33,8 @@ Route::prefix('attribute')->group(function() {
 });
 
 
+Route::prefix('category')->group(function() {
+  Route::get('/{parentId?}', 'CategoryController@index');
+  Route::post('/', 'CategoryController@create');
+  Route::patch('/', 'CategoryController@store');
+});

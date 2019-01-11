@@ -1,5 +1,6 @@
 class ValidationConvert {
   ruleValidations(params) {
+    // описание всех правил валидации
     let result = [];
     for(let key in params) {
       if(key == 'required' && params[key] == true) {
@@ -25,6 +26,7 @@ class ValidationConvert {
     return result;
   }
   count(arg) {
+    // это уже не валидация а максимальное количество символов
     for(let key in arg) {
       if(key == 'max') {
         return arg[key];
@@ -33,6 +35,7 @@ class ValidationConvert {
     return null;
   }
   required(arg) {
+    // пометка поля ввода * - как обязательного для заполнения
     for(let key in arg) {
       if(key == 'required' && arg[key] == true) {
         return true

@@ -4,6 +4,7 @@ namespace Modules\Product\Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
+use Modules\Product\Database\Seeders\CategoryTableSeeder;
 
 class ProductDatabaseSeeder extends Seeder
 {
@@ -16,6 +17,6 @@ class ProductDatabaseSeeder extends Seeder
     {
         Model::unguard();
 
-        // $this->call("OthersTableSeeder");
+        $this->call(CategoryTableSeeder::class);
     }
 }

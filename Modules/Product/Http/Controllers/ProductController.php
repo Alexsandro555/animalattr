@@ -5,17 +5,27 @@ namespace Modules\Product\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
+use Modules\Product\Database\Seeders\CategoryTableSeeder;
 use Modules\Product\Entities\Product;
+use Modules\Initializer\Traits\ControllerTrait;
 
 class ProductController extends Controller
 {
+  Use ControllerTrait;
+
+  public $model;
+  public function __construct()
+  {
+    $this->model=new Product;
+  }
+
     /**
      * Display a listing of the resource.
      * @return Response
      */
     public function index()
     {
-        return Product::with('type_product')->orderBy('created_at', 'desc')->get();
+      return Product::orderBy('created_at', 'desc')->get();
     }
 
     /**
@@ -34,6 +44,7 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+
     }
 
     /**

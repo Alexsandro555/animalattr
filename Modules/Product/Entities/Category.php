@@ -2,24 +2,24 @@
 
 namespace Modules\Product\Entities;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Baum\Node;
 
-class Category extends Model
+class Category extends Node
 {
   use SoftDeletes;
 
   protected $table = 'categories';
-  protected $fillable = [
-    'id',
-    'title',
-    'sort',
-    'description'
-  ];
+
+  protected $guarded = [];
 
   protected $dates = ['deleted_at'];
 
-  public function type_products() {
-    return $this->hasMany(TypeProduct::class);
+  public function createDefaultChildren() {
+    return $this->children()->firstOrCreate(['title' => 'По-умолчанию', 'url_key' => 'default', 'sort' => 1]);
+  }
+
+  public function attributes() {
+    return $this->belongsToMany(Attribute::class, 'attribute_category');
   }
 }
